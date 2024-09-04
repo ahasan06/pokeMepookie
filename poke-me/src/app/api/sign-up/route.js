@@ -18,7 +18,7 @@ export async function POST(request) {
         if (existingUserVerifiedByUsername) {
             return NextResponse.json(
                 {
-                    success: false, // u cant to register this mail.already has taken
+                    success: false, 
                     message: "username is already taken!"
                 }
             )

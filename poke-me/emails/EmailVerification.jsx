@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Html, Body, Container, Heading, Text, Button } from '@react-email/components';
 
 function EmailVerification({ username, otp }) {

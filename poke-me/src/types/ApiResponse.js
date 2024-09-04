@@ -7,7 +7,7 @@ export const ApiResponse = {
   messages: [], // Initialize as an empty array or include default MessageSchema objects
 };
 
-// Example of how to add messages using MessageSchema
-ApiResponse.messages.push(new MessageSchema({ content: "Example message" }));
+// Add a new message object to the messages array (matching the MessageSchema structure)
+ApiResponse.messages.push({ content: "Example message", createdAt: new Date() });
 
 export default ApiResponse;
