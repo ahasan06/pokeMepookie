@@ -1,6 +1,6 @@
 
 import AuthProvider from "@/context/AuthProvider";
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from 'react-hot-toast';
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
