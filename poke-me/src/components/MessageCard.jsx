@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import {
     Card,
@@ -10,8 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-import axios from 'axios';
+import { toast } from 'react-hot-toast';
 import {
     AlertDialog,
     AlertDialogAction,
@@ -24,22 +21,22 @@ import {
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import dayjs from 'dayjs';
+import axios from 'axios';
 
 function MessageCard({ message, onMessageDelete }) {
-    const toast = useToast();
 
     // Confirm delete action
     const handleDeleteConfirm = async () => {
         try {
             const response = await axios.delete(`/api/delete-message/${message._id}`);
-
-            // Check for success response and show toast notification
-            if (response.status === 200) {
-                onMessageDelete(message._id); // Call the callback to update the UI
-            } else {
-                throw new Error(response.data.message || "Failed to delete message.");
-            }
+            console.log("response to delete message: ", message._id);
+            
+            // Pass only the message string to the toast
+            toast.success(response.data.message); 
+            // Call the callback to update the UI
+            onMessageDelete(message._id);
         } catch (error) {
+            toast.error("Failed to delete message!");
             console.error(error);
         }
     };
@@ -49,7 +46,7 @@ function MessageCard({ message, onMessageDelete }) {
             <Card className="card-bordered">
                 <CardHeader>
                     <div className="flex justify-between items-center">
-                        <CardTitle>{message?.content || "Message Content"}</CardTitle>
+                        <CardTitle>{message.content || "Message Content"}</CardTitle>
                         <AlertDialog>
                             <AlertDialogTrigger asChild>
                                 <Button variant="destructive" className='bg-black border border-transparent text-white hover:text-black hover:border-black'>

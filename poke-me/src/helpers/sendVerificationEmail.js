@@ -13,7 +13,6 @@ export async function sendVerificationEmail(email, username, verifyCode) {
             subject: 'Verify Your Email Address for using poke me pookie',
             react: emailContent,
         });
-
         console.log("Email send result:", result);
 
         // Check if there is data and no error to determine success

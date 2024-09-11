@@ -21,7 +21,6 @@ function DashboardPage() {
 
 
   const { data: session, status } = useSession(); // Destructure session data and status
-
   // Handle session loading or unauthenticated state
   useEffect(() => {
     if (status === 'loading') return; // Render loading state while session is fetched
@@ -53,7 +52,7 @@ function DashboardPage() {
     }
   }, [setValue, toast]);
 
-  // Fetch user messages
+  // Fetch user messages //
   const fetchMessages = useCallback(async (refresh = false) => {
     console.log('Fetching messages...');
    
@@ -88,8 +87,10 @@ function DashboardPage() {
   };
 
   const handleDeleteMessage = (messageId) => {
-    setMessages((prevMessages) => prevMessages.filter((message) => message._id !== messageId));
+    setMessages((messages) => messages.filter((message) => message._id !== messageId));
   };
+
+
 
   const copyToClipboard = () => {
     const profileUrl = `${window.location.protocol}//${window.location.host}/u/${session.user.username}`;
